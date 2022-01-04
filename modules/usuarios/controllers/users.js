@@ -1,5 +1,10 @@
 const users = [];
 
+// Index
+module.exports.doIndex = (req, res) => {
+  res.send(users);
+};
+
 // Create
 module.exports.doPost = (req, res) => {
   const _id = Date.now();
@@ -21,7 +26,7 @@ module.exports.doPost = (req, res) => {
   return res.status(201).send(user).end();
 };
 
-//Read
+// Read
 module.exports.doGet = (req, res) => {
   let { userId } = req.params;
   userId = parseInt(userId);
@@ -57,5 +62,5 @@ module.exports.doDelete = (req, res) => {
   if (!user) return res.status(404).send({ message: "User not found" });
 
   users.splice(users.indexOf(user), 1);
-  res.send(users);
+  res.status(204).send();
 };
